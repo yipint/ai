@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.typ.imis</groupId>
+    <artifactId>imis</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>imis</name>
+    <description>imis</description>
+    <modules>
+        <module>common</module>
+        <module>business</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.6.13</spring-boot.version>
+        <hutool.version>5.8.11</hutool.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <dynamic-datasource.version>3.5.2</dynamic-datasource.version>
+        <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <freemarker.version>2.3.31</freemarker.version>
+        <syslog-server.version>5.5.15</syslog-server.version>
+        <sqlserver.version>11.2.0.jre8</sqlserver.version>
+        <openApi.version>1.6.8</openApi.version>
+        <disruptor.version>3.4.4</disruptor.version>
+        <oracle.version>19.3.0.0</oracle.version>
+        <tlog.version>1.5.2</tlog.version>
+        <logback.version>1.2.11</logback.version>
+        <caffeine.version>2.9.3</caffeine.version>
+        <guava.version>30.1-jre</guava.version>
+    </properties>
+    <packaging>pom</packaging>
+
+
+    <dependencies>
+        <!-- web 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- huTool 工具类 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- 数据库相关依赖 -->
+            <!-- MyBatis-Plus 核心库（包含 @TableName） -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- 动态数据源 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>mssql-jdbc</artifactId>
+                <version>${sqlserver.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>${oracle.version}</version>
+            </dependency>
+
+            <!-- 代码生成器 -->
+            <!-- MyBatis-Plus 生成器依赖 -->
+            <!--            <dependency>-->
+            <!--                <groupId>com.baomidou</groupId>-->
+            <!--                <artifactId>mybatis-plus-generator</artifactId>-->
+            <!--                <version>${mybatis-generator.version}</version>-->
+            <!--            </dependency>-->
+
+            <!-- 模板引擎（Freemarker） -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- Syslog-Server -->
+            <dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-syslog</artifactId>
+                <version>${syslog-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-ip</artifactId>
+                <version>${syslog-server.version}</version>
+            </dependency>
+
+            <!-- swagger,目前swagger3停止维护了，所以使用openDoc -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${openApi.version}</version>
+            </dependency>
+
+            <!-- Disruptor核心库 -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine -->
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+
+            <!-- TLog 核心依赖 -->
+            <dependency>
+                <groupId>com.yomahub</groupId>
+                <artifactId>tlog-all-spring-boot-starter</artifactId>
+                <version>${tlog.version}</version> <!-- 建议使用最新稳定版 -->
+            </dependency>
+
+            <!-- Maven 依赖 -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version> <!-- 使用最新稳定版 -->
+            </dependency>
+
+            <!-- 如果需要 SizeAndTimeBasedRollingPolicy -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.36</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--发布Maven地址-->
+    <distributionManagement>
+        <repository>
+            <id>winning-fba-releases</id>
+            <url>http://nexus.winning.com.cn:8081/repository/winning-maven-003-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>winning-fba-snapshots</id>
+            <url>http://nexus.winning.com.cn:8081/repository/winning-maven-003-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>winning-internet-nexus</id>
+            <url>http://nexus.winning.com.cn:8081/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
