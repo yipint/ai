@@ -12,12 +12,6 @@
     <artifactId>business</artifactId>
 
     <dependencies>
-        <!-- 公共基础模块 -->
-        <dependency>
-            <groupId>com.winning.imism</groupId>
-            <artifactId>imism-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
 
         <!-- 数据库相关依赖 -->
@@ -108,6 +102,12 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typ.imis</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

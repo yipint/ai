@@ -1,6 +1,6 @@
 package com.typ.business.runner;
 
-import com.winning.imism.common.utils.LocalHostAddressUtil;
+import com.typ.business.utils.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -37,7 +37,7 @@ public class AppStartedDisplayRunner implements ApplicationRunner {
                 .format("\r\n\r\n>>>>>>>>>> %s服务 启动成功, server port = %s, active profiles = %s <<<<<<<<<<\n" +
                                 "\n", appName, serverPort,
                          active);
-        String ipAddr = LocalHostAddressUtil.getLocalHostExactAddress().getHostAddress();
+        String ipAddr = IpUtil.getLocalIpv4();
         String tempSSLStr = "";
         if (Boolean.TRUE.toString().equalsIgnoreCase(sslFlag)) {
             tempSSLStr = "s";

@@ -27,7 +27,7 @@ public class MyBatisPlusConfig {
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         PaginationInnerInterceptor pagination = new PaginationInnerInterceptor();
-        pagination.setDbType(DbType.SQL_SERVER);
+        pagination.setDbType(DbType.SQL_SERVER2005);
         interceptor.addInnerInterceptor(pagination);
         return interceptor;
     }

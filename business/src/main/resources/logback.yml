@@ -1,0 +1,49 @@
+configuration:
+  scan: true
+  scanPeriod: 60 seconds
+  statusListener:
+    - onConsoleStatusListener
+
+  contextName: imis-business
+
+  property:
+    - name: LOG_PATH
+      value: logs/business
+    - name: LOG_FILE
+      value: ${LOG_PATH}/business.log
+    - name: LOG_PATTERN
+      value: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+  appender:
+    - name: CONSOLE
+      class: ch.qos.logback.core.ConsoleAppender
+      encoder:
+        pattern: ${LOG_PATTERN}
+    - name: FILE
+      class: ch.qos.logback.core.rolling.RollingFileAppender
+      file: ${LOG_FILE}
+      rollingPolicy:
+        class: ch.qos.logback.core.rolling.TimeBasedRollingPolicy
+        fileNamePattern: ${LOG_PATH}/business.%d{yyyy-MM-dd}.%i.log.gz
+        maxHistory: 30
+        timeBasedFileNamingAndTriggeringPolicy:
+          class: ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP
+          maxFileSize: 50MB
+      encoder:
+        pattern: ${LOG_PATTERN}
+
+  root:
+    level: info
+    appenderRef:
+      - ref: CONSOLE
+      - ref: FILE
+
+  logger:
+    - name: com.typ
+      level: debug
+      additivity: false
+      appenderRef:
+        - ref: CONSOLE
+        - ref: FILE
+
+

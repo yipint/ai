@@ -10,6 +10,7 @@
     <modules>
         <module>common</module>
         <module>business</module>
+        <module>spring-ai</module>
     </modules>
 
     <properties>

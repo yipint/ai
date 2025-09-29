@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+
+logging:
+  config: classpath:logback-spring.xml
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.typ.business.entity
+
+
+ 
